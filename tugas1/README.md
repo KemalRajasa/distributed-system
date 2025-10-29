@@ -2,7 +2,6 @@
 
 # Kemal Tangguh Aji Rajasa - 5025231263
 
-
 ## TABLE OF CONTENT
 
 [SPESIFIKASI HARDWARE](#spesifikasi-hardware)
