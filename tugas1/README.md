@@ -5,6 +5,7 @@
 ## TABLE OF CONTENT
 
 [SPESIFIKASI](#spesifikasi)
+[NODE CONFIG](#node-config)
 
 ## SPESIFIKASI
 
@@ -24,6 +25,17 @@
 | Software Virtualisasi | Virtual Box |
 | Alokasi RAM | 8 GB |
 | Alokasi Core | 8 Core |
+| Node Image | royyana/netics-pc:debi-latest |
+
+## NODE CONFIG
+
+### NODE A
+```
+```
+
+### NODE B
+### NODE C (LOGGER)
+### NODE D
 
 
 
