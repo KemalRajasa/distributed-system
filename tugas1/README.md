@@ -21,7 +21,7 @@
 
 ### SPESIFIKASI
 
-  ### HARDWARE
+  #### HARDWARE
   
   | PART | DETAIL |
   | :--- | :---: |
@@ -30,7 +30,7 @@
   | RAM | 16 GB DDR4 |
   | OS | Windows 11 HOME |
   
-  ### VIRTUAL MACHINE
+  #### VIRTUAL MACHINE
   
   | INFO | DETAIL |
   | :--- | :---: |
@@ -49,6 +49,19 @@ Node A, B, dan D bertindak sebagai client dan Node C bertindak sebagai logger
 
 
 ### NODES IP LIST
+
+  Dengan menggunakan perintah `hostname -I` di tiap node akan di dapatkan ip masing-masing node untuk nantinya dipakai sebagai argument menjalankan peer_node.py
+  
+  <img width="1919" height="1003" alt="image" src="https://github.com/user-attachments/assets/42bf3b50-3be8-4d2e-b821-9f54977b9b7d" />
+
+  TABEL IP
+
+  | NODE | NODE IP | VNC CONNECTION |
+  | :--- | :---: | :---: |
+  | A | 192.168.122.39 | vnc://192.168.18.45:5900 |
+  | B | 192.168.122.189 | vnc://192.168.18.45:5901 |
+  | C | 192.168.122.7 | vnc://192.168.18.45:5902 |
+  | D | 192.168.122.159 | vnc://192.168.18.45:5903 |
 
 ## CONFIGURATION
 
