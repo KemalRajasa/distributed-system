@@ -77,41 +77,37 @@ Node A, B, dan D bertindak sebagai client dan Node C bertindak sebagai logger
   #### NODE A
   
   ```
-  git clone https://github.com/rm77/ds25/
-  mkdir setup
-  cd setup
-  cp /root/ds25/synchronization/time_sync/program/peer_node.py .
-  cp /root/ds25/synchronization/time_sync/node_a/run.bash .
+  git clone https://github.com/KemalRajasa/distributed-system/
+  cp -r distributed-system/tugas1/src/node_a .
+  cd node_a
+  ls
   ```
   
   #### NODE B
   
   ```
-  git clone https://github.com/rm77/ds25/
-  mkdir setup
-  cd setup
-  cp /root/ds25/synchronization/time_sync/program/peer_node.py .
-  cp /root/ds25/synchronization/time_sync/node_b/run.bash .
+  git clone https://github.com/KemalRajasa/distributed-system/
+  cp -r distributed-system/tugas1/src/node_b .
+  cd node_b
+  ls
   ```
   
   #### NODE C (LOGGER)
   
   ```
-  git clone https://github.com/rm77/ds25/
-  mkdir setup
-  cd setup
-  cp /root/ds25/synchronization/time_sync/program/logger.py .
-  cp /root/ds25/synchronization/time_sync/node_d/run.bash .
+  git clone https://github.com/KemalRajasa/distributed-system/
+  cp -r distributed-system/tugas1/src/node_c .
+  cd node_c
+  ls
   ```
   
   #### NODE D
   
   ```
-  git clone https://github.com/rm77/ds25/
-  mkdir setup
-  cd setup
-  cp /root/ds25/synchronization/time_sync/program/peer_node.py .
-  cp /root/ds25/synchronization/time_sync/node_d/run.bash .
+  git clone https://github.com/KemalRajasa/distributed-system/
+  cp -r distributed-system/tugas1/src/node_d .
+  cd node_d
+  ls
   ```
 
 ### NODE CONFIG
