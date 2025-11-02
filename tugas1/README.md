@@ -4,15 +4,22 @@
 
 ## TABEL KONTEN
 
-[SPESIFIKASI](#spesifikasi)
+- [ARSITEKTUR PERCOBAAN](#arsitektur-percobaan)
+  - [SPESIFIKASI](#spesifikasi)
+  - [TOPOLOGI](#topologi)
+  - [NODES IP LIST](#nodes-ip-list)
 
-[NODES NETWORK CONFIG](#nodes-network-config)
+- [CONFIGURATION](#configuration)
+  - [NODES NETWORK CONFIG](#nodes-network-config)
+  - [INSTALLATION AND SETUP](#installation-and-setup)
+  - [NODE CONFIG](#node-config)
 
-[INSTALLATION AND SETUP](#installation-and-setup)
 
-[NODE CONFIG](#node-config)
 
-## SPESIFIKASI
+
+## ARSITEKTUR PERCOBAAN
+
+### SPESIFIKASI
 
   ### HARDWARE
   
@@ -32,17 +39,29 @@
   | Alokasi Core | 8 Core |
   | Node Image | royyana/netics-pc:debi-latest |
 
+### TOPOLOGI
 
-## NODES NETWORK CONFIG
+Di pusatnya adalah Switch1, yang bertindak sebagai titik koneksi utama. Empat node  bernama node_a, node_b, node_c, dan node_d terhubung ke switch ini. Switch1 kemudian terhubung ke NAT1 (Network Address Translation), yang menyediakan konektivitas jaringan eksternal internet untuk semua node di jaringan internal tersebut.
+
+Node A, B, dan D bertindak sebagai client dan Node C bertindak sebagai logger
+
+<img width="1891" height="944" alt="image" src="https://github.com/user-attachments/assets/5a3df6c5-b665-4e57-8f78-3c1cf16e4278" />
+
+
+### NODES IP LIST
+
+## CONFIGURATION
+
+### NODES NETWORK CONFIG
 
   ```
   auto eth0
   iface eth0 inet dhcp
   ```
 
-## INSTALLATION AND SETUP
+### INSTALLATION AND SETUP
 
-  ### NODE A
+  #### NODE A
   
   ```
   git clone https://github.com/rm77/ds25/
@@ -52,7 +71,7 @@
   cp /root/ds25/synchronization/time_sync/node_a/run.bash .
   ```
   
-  ### NODE B
+  #### NODE B
   
   ```
   git clone https://github.com/rm77/ds25/
@@ -62,7 +81,7 @@
   cp /root/ds25/synchronization/time_sync/node_b/run.bash .
   ```
   
-  ### NODE C (LOGGER)
+  #### NODE C (LOGGER)
   
   ```
   git clone https://github.com/rm77/ds25/
@@ -72,7 +91,7 @@
   cp /root/ds25/synchronization/time_sync/node_d/run.bash .
   ```
   
-  ### NODE D
+  #### NODE D
   
   ```
   git clone https://github.com/rm77/ds25/
@@ -82,11 +101,11 @@
   cp /root/ds25/synchronization/time_sync/node_d/run.bash .
   ```
 
-## NODE CONFIG
+### NODE CONFIG
 
   Konfigurasi pada file `run.bash` masing masing node untuk memudahkan eksekusi file peer_node.py atau logger.py, pastikan file peer_node.py atau logger.py berada di direktori yang sama dengan run.bash
 
-  ### NODE A
+  #### NODE A
   
   ```
   #!/bin/bash
@@ -98,7 +117,7 @@
   --initiate-broadcast --msg "Hello from A"
   ```
   
-  ### NODE B
+  #### NODE B
   
   ```
   #!/bin/bash
@@ -109,7 +128,7 @@
   --offset-ms -600 \
   ```
   
-  ### NODE C (LOGGER)
+  #### NODE C (LOGGER)
   
   ```
   #!/bin/bash
@@ -117,7 +136,7 @@
   python3 logger.py --bind 0.0.0.0 --port 9999 --expect 10
   ```
   
-  ### NODE D
+  #### NODE D
   
   ```
   #!/bin/bash
