@@ -2,6 +2,8 @@
 
 # Kemal Tangguh Aji Rajasa - 5025231263
 
+## DOCS LAPORAN BISA DIAKSES [DISINI](https://docs.google.com/document/d/1_ZNYA8N7BV_7pC0qq88wCRWg8LckhLVHbqyoWEK0tOM/edit?usp=sharing)
+
 ## TABEL KONTEN
 
 - [ARSITEKTUR PERCOBAAN](#arsitektur-percobaan)
