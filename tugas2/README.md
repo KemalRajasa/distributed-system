@@ -161,6 +161,7 @@ Di pusatnya adalah Switch1, yang bertindak sebagai titik koneksi utama. lima nod
   ```
   
   #### NODE 4
+  ```
   
     #!/bin/bash
 
