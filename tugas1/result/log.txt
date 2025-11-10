@@ -1,0 +1,127 @@
+# NODE A
+
+@B HAI INI PESAN AWAL KE B
+[A] SENT chat -> B: id=CHAT-A-2871841 text='HAI INI PESAN AWAL KE B'
+[A] RECV ack from B id=ACK-B-2871867 L_in=13->14 V_in={'B': 6, 'A': 9, 'D': 4}->{'A': 10, 'B': 6, 'D': 4}
+[A] SENT chat -> B: id=CHAT-A-2871841 text='HAI INI PESAN AWAL KE B'
+[A] RECV ack from B id=ACK-B-2871867 L_in=13->14 V_in={'B': 6, 'A': 9, 'D': 4}->{'A': 10, 'B': 6, 'D': 4}
+@D HAI INI PESAN AWAL KE D
+[A] SENT chat -> D: id=CHAT-A-2886009 text='HAI INI PESAN AWAL KE D'
+[A] RECV ack from D id=ACK-D-2886030 L_in=17->18 V_in={'D': 6, 'A': 11, 'B': 6}->{'A': 12, 'B': 6, 'D': 6}
+
+# NODE B
+[B] RECV chat from A id=CHAT-A-2822966 L_in=1->2 V_in={'A': 1, 'B': 0, 'D': 0}->{'B': 1, 'A': 1, 'D': 0}
+[B] SENT ack  -> A: id=ACK-B-2822979 for=CHAT-A-2822966
+[B] RECV chat from A id=CHAT-A-2854307 L_in=6->7 V_in={'A': 5, 'B': 2, 'D': 2}->{'B': 3, 'A': 5, 'D': 2}
+[B] RECV chat from A id=CHAT-A-2822966 L_in=1->2 V_in={'A': 1, 'B': 0, 'D': 0}->{'B': 1, 'A': 1, 'D': 0}
+[B] SENT ack  -> A: id=ACK-B-2822979 for=CHAT-A-2822966
+[B] RECV chat from A id=CHAT-A-2854307 L_in=6->7 V_in={'A': 5, 'B': 2, 'D': 2}->{'B': 3, 'A': 5, 'D': 2}
+[B] SENT ack  -> A: id=ACK-B-2854329 for=CHAT-A-2854307
+[B] RECV chat from A id=CHAT-A-2871841 L_in=11->12 V_in={'A': 9, 'B': 4, 'D': 4}->{'B': 5, 'A': 9, 'D': 4}
+[B] SENT ack  -> A: id=ACK-B-2871867 for=CHAT-A-2871841
+@D HAI INI PESAN AWAL B KE D
+[B] SENT chat -> D: id=CHAT-B-2904308 text='HAI INI PESAN AWAL B KE D'
+[B] RECV ack from D id=ACK-D-2904339 L_in=19->20 V_in={'D': 8, 'A': 11, 'B': 7}->{'B': 8, 'A': 11, 'D': 8}
+
+# NODE C
+[D] RECV chat from A id=CHAT-A-2823025 L_in=2->3 V_in={'A': 2, 'B': 0, 'D': 0}->{'D': 1, 'A': 2, 'B': 0}
+[D] SENT ack  -> A: id=ACK-D-2823043 for=CHAT-A-2823025
+[D] RECV chat from A id=CHAT-A-2854307 L_in=7->8 V_in={'A': 6, 'B': 2, 'D': 2}->{'D': 3, 'A': 6, 'B': 2}
+[D] SENT ack  -> A: id=ACK-D-2854357 for=CHAT-A-2854307
+[D] RECV chat from A id=CHAT-A-2886009 L_in=15->16 V_in={'A': 11, 'B': 6, 'D': 4}->{'D': 5, 'A': 11, 'B': 6}
+[D] SENT ack  -> A: id=ACK-D-2886030 for=CHAT-A-2886009
+[D] RECV chat from B id=CHAT-B-2904308 L_in=14->18 V_in={'B': 7, 'A': 9, 'D': 4}->{'D': 7, 'A': 11, 'B': 7}
+[D] SENT ack  -> B: id=ACK-D-2904339 for=CHAT-B-2904308
+
+
+
+# CLOCK SKEW EVENT
+ACK-D-2854357 D->A local_ts=1762772727.387 L=9 V={'D': 4, 'A': 6, 'B': 2} "Ack:CHAT-A-2854307"
+CHAT-A-2854307 A->B local_ts=1762772727.937 L=6 V={'A': 5, 'B': 2, 'D': 2} "HAI INI PESAN AWAL"
+CHAT-A-2854307 A->D local_ts=1762772727.937 L=7 V={'A': 6, 'B': 2, 'D': 2} "HAI INI PESAN AWAL"
+ACK-B-2854329 B->A local_ts=1762772728.559 L=8 V={'B': 4, 'A': 5, 'D': 2} "Ack:CHAT-A-2854307"
+
+
+
+=== Naive order (by sender local_ts) — may violate causality ===
+ACK-D-2854357 D->A local_ts=1762772727.387 L=9 V={'D': 4, 'A': 6, 'B': 2} "Ack:CHAT-A-2854307"
+CHAT-A-2854307 A->B local_ts=1762772727.937 L=6 V={'A': 5, 'B': 2, 'D': 2} "HAI INI PESAN AWAL"
+CHAT-A-2854307 A->D local_ts=1762772727.937 L=7 V={'A': 6, 'B': 2, 'D': 2} "HAI INI PESAN AWAL"
+ACK-B-2854329 B->A local_ts=1762772728.559 L=8 V={'B': 4, 'A': 5, 'D': 2} "Ack:CHAT-A-2854307"
+CHAT-A-2871841 A->B local_ts=1762772745.471 L=11 V={'A': 9, 'B': 4, 'D': 4} "HAI INI PESAN AWAL KE B"
+ACK-B-2871867 B->A local_ts=1762772746.097 L=13 V={'B': 6, 'A': 9, 'D': 4} "Ack:CHAT-A-2871841"
+ACK-D-2886030 D->A local_ts=1762772759.060 L=17 V={'D': 6, 'A': 11, 'B': 6} "Ack:CHAT-A-2886009"
+CHAT-A-2886009 A->D local_ts=1762772759.639 L=15 V={'A': 11, 'B': 6, 'D': 4} "HAI INI PESAN AWAL KE D"
+ACK-D-2904339 D->B local_ts=1762772777.369 L=19 V={'D': 8, 'A': 11, 'B': 7} "Ack:CHAT-B-2904308"
+CHAT-B-2904308 B->D local_ts=1762772778.538 L=14 V={'B': 7, 'A': 9, 'D': 4} "HAI INI PESAN AWAL B KE D"
+
+=== Causal order (Lamport total order) ===
+CHAT-A-2854307 A->B L=6 V={'A': 5, 'B': 2, 'D': 2} "HAI INI PESAN AWAL"
+CHAT-A-2854307 A->D L=7 V={'A': 6, 'B': 2, 'D': 2} "HAI INI PESAN AWAL"
+ACK-B-2854329 B->A L=8 V={'B': 4, 'A': 5, 'D': 2} "Ack:CHAT-A-2854307"
+ACK-D-2854357 D->A L=9 V={'D': 4, 'A': 6, 'B': 2} "Ack:CHAT-A-2854307"
+CHAT-A-2871841 A->B L=11 V={'A': 9, 'B': 4, 'D': 4} "HAI INI PESAN AWAL KE B"
+ACK-B-2871867 B->A L=13 V={'B': 6, 'A': 9, 'D': 4} "Ack:CHAT-A-2871841"
+CHAT-B-2904308 B->D L=14 V={'B': 7, 'A': 9, 'D': 4} "HAI INI PESAN AWAL B KE D"
+CHAT-A-2886009 A->D L=15 V={'A': 11, 'B': 6, 'D': 4} "HAI INI PESAN AWAL KE D"
+ACK-D-2886030 D->A L=17 V={'D': 6, 'A': 11, 'B': 6} "Ack:CHAT-A-2886009"
+ACK-D-2904339 D->B L=19 V={'D': 8, 'A': 11, 'B': 7} "Ack:CHAT-B-2904308"
+
+=== Causal order (Vector-clock topological order) ===
+CHAT-A-2854307 A->B V={'A': 5, 'B': 2, 'D': 2} L=6 "HAI INI PESAN AWAL"
+CHAT-A-2854307 A->D V={'A': 6, 'B': 2, 'D': 2} L=7 "HAI INI PESAN AWAL"
+ACK-B-2854329 B->A V={'B': 4, 'A': 5, 'D': 2} L=8 "Ack:CHAT-A-2854307"
+ACK-D-2854357 D->A V={'D': 4, 'A': 6, 'B': 2} L=9 "Ack:CHAT-A-2854307"
+CHAT-A-2871841 A->B V={'A': 9, 'B': 4, 'D': 4} L=11 "HAI INI PESAN AWAL KE B"
+ACK-B-2871867 B->A V={'B': 6, 'A': 9, 'D': 4} L=13 "Ack:CHAT-A-2871841"
+CHAT-A-2886009 A->D V={'A': 11, 'B': 6, 'D': 4} L=15 "HAI INI PESAN AWAL KE D"
+CHAT-B-2904308 B->D V={'B': 7, 'A': 9, 'D': 4} L=14 "HAI INI PESAN AWAL B KE D"
+ACK-D-2886030 D->A V={'D': 6, 'A': 11, 'B': 6} L=17 "Ack:CHAT-A-2886009"
+ACK-D-2904339 D->B V={'D': 8, 'A': 11, 'B': 7} L=19 "Ack:CHAT-B-2904308"
+
+=== Vector-clock relations (pairwise) ===
+CHAT-A-2854307 -> CHAT-A-2854307 (a happens-before b)
+CHAT-A-2854307 -> ACK-B-2854329 (a happens-before b)
+CHAT-A-2854307 -> ACK-D-2854357 (a happens-before b)
+CHAT-A-2854307 -> CHAT-A-2871841 (a happens-before b)
+CHAT-A-2854307 -> ACK-B-2871867 (a happens-before b)
+CHAT-A-2854307 -> CHAT-A-2886009 (a happens-before b)
+CHAT-A-2854307 -> ACK-D-2886030 (a happens-before b)
+CHAT-A-2854307 -> CHAT-B-2904308 (a happens-before b)
+CHAT-A-2854307 -> ACK-D-2904339 (a happens-before b)
+CHAT-A-2854307 || ACK-B-2854329 (concurrent)
+CHAT-A-2854307 -> ACK-D-2854357 (a happens-before b)
+CHAT-A-2854307 -> CHAT-A-2871841 (a happens-before b)
+CHAT-A-2854307 -> ACK-B-2871867 (a happens-before b)
+CHAT-A-2854307 -> CHAT-A-2886009 (a happens-before b)
+CHAT-A-2854307 -> ACK-D-2886030 (a happens-before b)
+CHAT-A-2854307 -> CHAT-B-2904308 (a happens-before b)
+CHAT-A-2854307 -> ACK-D-2904339 (a happens-before b)
+ACK-B-2854329 || ACK-D-2854357 (concurrent)
+ACK-B-2854329 -> CHAT-A-2871841 (a happens-before b)
+ACK-B-2854329 -> ACK-B-2871867 (a happens-before b)
+ACK-B-2854329 -> CHAT-A-2886009 (a happens-before b)
+ACK-B-2854329 -> ACK-D-2886030 (a happens-before b)
+ACK-B-2854329 -> CHAT-B-2904308 (a happens-before b)
+ACK-B-2854329 -> ACK-D-2904339 (a happens-before b)
+ACK-D-2854357 -> CHAT-A-2871841 (a happens-before b)
+ACK-D-2854357 -> ACK-B-2871867 (a happens-before b)
+ACK-D-2854357 -> CHAT-A-2886009 (a happens-before b)
+ACK-D-2854357 -> ACK-D-2886030 (a happens-before b)
+ACK-D-2854357 -> CHAT-B-2904308 (a happens-before b)
+ACK-D-2854357 -> ACK-D-2904339 (a happens-before b)
+CHAT-A-2871841 -> ACK-B-2871867 (a happens-before b)
+CHAT-A-2871841 -> CHAT-A-2886009 (a happens-before b)
+CHAT-A-2871841 -> ACK-D-2886030 (a happens-before b)
+CHAT-A-2871841 -> CHAT-B-2904308 (a happens-before b)
+CHAT-A-2871841 -> ACK-D-2904339 (a happens-before b)
+ACK-B-2871867 -> CHAT-A-2886009 (a happens-before b)
+ACK-B-2871867 -> ACK-D-2886030 (a happens-before b)
+ACK-B-2871867 -> CHAT-B-2904308 (a happens-before b)
+ACK-B-2871867 -> ACK-D-2904339 (a happens-before b)
+CHAT-A-2886009 -> ACK-D-2886030 (a happens-before b)
+CHAT-A-2886009 || CHAT-B-2904308 (concurrent)
+CHAT-A-2886009 -> ACK-D-2904339 (a happens-before b)
+ACK-D-2886030 || CHAT-B-2904308 (concurrent)
+ACK-D-2886030 -> ACK-D-2904339 (a happens-before b)
+CHAT-B-2904308 -> ACK-D-2904339 (a happens-before b)
