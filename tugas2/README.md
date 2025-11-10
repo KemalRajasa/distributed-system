@@ -2,7 +2,7 @@
 
 # Kemal Tangguh Aji Rajasa - 5025231263
 
-## DOCS LAPORAN BISA DIAKSES [DISINI](https://docs.google.com/document/d/1_ZNYA8N7BV_7pC0qq88wCRWg8LckhLVHbqyoWEK0tOM/edit?usp=sharing)
+## DOCS LAPORAN BISA DIAKSES [DISINI](https://docs.google.com/document/d/1DhXQ6zcF46TKcgGWB9sxff-3vN_RPySqoEDy7BUPvd8/edit?usp=sharing)
 
 ## TABEL KONTEN
 
@@ -244,7 +244,9 @@ Di pusatnya adalah Switch1, yang bertindak sebagai titik koneksi utama. lima nod
     echo "-------HASIL----"
     python3 ./kvclient.py --nodes 127.0.0.1:8001,127.0.0.1:8002,127.0.0.1:8003  getall warna
  ```
+### PENGGUNAAN
 
+Demo singkat penggunaan program : https://youtu.be/TBnKumGwTG0
 
 
 
